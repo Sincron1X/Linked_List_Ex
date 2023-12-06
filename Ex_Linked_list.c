@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdio.h>
 
 #define MY_LIST(ptr) (ptr)
 
@@ -113,6 +114,21 @@ unsigned int my_list_length(struct my_list_item* head)
     return head->count;
 }
 
+void print_my_list(struct my_list_item* head)
+{
+    printf("Linked List: ");
+    struct my_list_item* current_item = head;
+
+    while (current_item != NULL)
+    {
+        struct my_int_item* int_item = MY_INT_ITEM_CAST(current_item);
+        printf("%d ", int_item->value);
+        current_item = current_item->next;
+    }
+
+    printf("\n");
+}
+
 int main(int argc, char** argv)
 {
 
@@ -123,27 +139,25 @@ int main(int argc, char** argv)
     my_list_append(&head, MY_LIST(&first_int_item.list_item));
 
     struct my_int_item second_int_item;
-    first_int_item.value = 10;
-    my_list_append(&head, MY_LIST(&first_int_item.list_item));
+    second_int_item.value = 10;
+    my_list_append(&head, MY_LIST(&second_int_item.list_item));
 
     struct my_int_item third_int_item;
-    first_int_item.value = 20;
-    my_list_append(&head, MY_LIST(&first_int_item.list_item));
+    third_int_item.value = 20;
+    my_list_append(&head, MY_LIST(&third_int_item.list_item));
 
     struct my_int_item fourth_int_item;
-    first_int_item.value = 30;
-    my_list_append(&head, MY_LIST(&first_int_item.list_item));
+    fourth_int_item.value = 30;
+    my_list_append(&head, MY_LIST(&fourth_int_item.list_item));
 
     struct my_int_item fifth_int_item;
-    first_int_item.value = 40;
-    my_list_append(&head, MY_LIST(&first_int_item.list_item));
-
-   
+    fifth_int_item.value = 40;
+    my_list_append(&head, MY_LIST(&fifth_int_item.list_item));
 
     // Remove an item from the list
     my_list_remove(&head, MY_LIST(&first_int_item.list_item));
 
-    
+    print_my_list(head);
 
     return 0;
 }
