@@ -154,6 +154,8 @@ int main(int argc, char** argv)
     fifth_int_item.value = 40;
     my_list_append(&head, MY_LIST(&fifth_int_item.list_item));
 
+    print_my_list(head);
+
     // Remove an item from the list
     my_list_remove(&head, MY_LIST(&first_int_item.list_item));
 
